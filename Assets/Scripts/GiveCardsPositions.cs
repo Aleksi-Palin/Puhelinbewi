@@ -26,6 +26,7 @@ public class GiveCardsPositions : MonoBehaviour
 
     private void GenerateGrid()
     {
+        
         GameObject ReferenceTile = (GameObject)Instantiate(Resources.Load("SampleCard"));
         for (int  row = 0;  row < rows;  row++)
         {
@@ -41,10 +42,10 @@ public class GiveCardsPositions : MonoBehaviour
         }
         Destroy(ReferenceTile);
 
-        float gridW = cols * tileSize;
-        float gridH = rows * tileSize;
+        float GridW = rows * tileSize;
+        float GridH = cols * tileSize;
 
-        transform.position = new Vector2(gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
+        transform.position = new Vector2(-GridW / 2 + tileSize / 2, GridH / 2 - tileSize / 2);
 
     }
 
