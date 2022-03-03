@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Shuffle : MonoBehaviour
 {
+    //sekoittaa jonon miss‰ on korttien kuvat ja t‰m‰ jono sit laitetaan paikallaan olevien korttien spriteksi ja k‰‰nnett‰‰n takaisin, mutta tallenetaan se jotenkin, ett‰ kun kortin k‰‰nt‰‰ se on viel‰ sama kortti
 
     public List<GameObject> Items;
 
