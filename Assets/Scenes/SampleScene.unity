@@ -275,6 +275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25cb9947d419a2f458dbf56359d1beb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaitTime: 4
+  FirstCardIsFlipped: 0
+  FirstCard: 
+  SecondCard: 
 --- !u!114 &1900286263
 MonoBehaviour:
   m_ObjectHideFlags: 0
