@@ -219,7 +219,6 @@ GameObject:
   - component: {fileID: 1900286264}
   - component: {fileID: 1900286263}
   - component: {fileID: 1900286262}
-  - component: {fileID: 1900286265}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -234,21 +233,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900286259}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b027f0555e63674f848692f2d5ea453, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  Wanted_Prefab_Folder: Level1
+  Items: []
 --- !u!4 &1900286261
 Transform:
   m_ObjectHideFlags: 0
@@ -277,8 +268,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WaitTime: 4
   FirstCardIsFlipped: 0
+  Combination_Found: 0
+  NoCombination: 0
+  CardsFlipped: 0
   FirstCard: 
   SecondCard: 
+  CardBackSide: {fileID: 21300000, guid: 4ead8698ca0ce104c934501361bc2a13, type: 3}
 --- !u!114 &1900286263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,15 +301,3 @@ MonoBehaviour:
   rows: 4
   cols: 4
   tileSize: 1.2
---- !u!114 &1900286265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1900286259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3bd925a71d5c14f98f64e630919480, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -13,14 +13,20 @@ public class GiveCardsPositions : MonoBehaviour
     //scriptille myös annetaan minkä kokoiseksi arvaus alusta halutaan mm. 4x4, 8x8, 16x16 yms. jolloin se asettaa kortita oikein (Miten? en tiedä googlaa)
 
     [SerializeField]
-    private int rows = 5;
+    private int rows;
     [SerializeField]
-    private int cols = 8;
+    private int cols;
     [SerializeField]
     private float tileSize = 1;
 
+    private Shuffle shuffleScript;
+
+    private int CardNumber = 0;
+
     private void Start()
     {
+        shuffleScript = FindObjectOfType<Shuffle>();
+        
         GenerateGrid();
     }
 
@@ -34,10 +40,14 @@ public class GiveCardsPositions : MonoBehaviour
             {
                 GameObject tile = (GameObject)Instantiate(ReferenceTile, transform);
 
+                tile.GetComponent<FlipCard>().CardImage = shuffleScript.Items[CardNumber];
+
                 float posX = col * tileSize;
                 float posY = row * -tileSize;
 
                 tile.transform.position = new Vector2(posX, posY);
+
+                CardNumber++;
             }
         }
         Destroy(ReferenceTile);

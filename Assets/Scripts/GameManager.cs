@@ -9,11 +9,17 @@ public class GameManager : MonoBehaviour
 
     [Header("Timer")]
     [SerializeField]
-    private float WaitTime = 2.0f;
+    public float WaitTime;
 
     [Header("Booleans")]
-    [SerializeField]
+    
     public bool FirstCardIsFlipped;
+
+    public bool Combination_Found;
+    public bool NoCombination;
+
+    [Header("Flipped Card count")]
+    public int CardsFlipped;
 
     [Header("Flipped Cards")]
     public string FirstCard;
@@ -21,6 +27,12 @@ public class GameManager : MonoBehaviour
 
     [Header("Instance")]
     private static GameManager Instance;
+
+    [Header("Cards backside sprite")]
+    public Sprite CardBackSide;
+
+    [Header("Other scipts")]
+    private FlipCard flipcardScript;
 
     private void Start()
     {
@@ -32,44 +44,56 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
+        NoCombination = true;
+        //flipcardScript = FindObjectOfType<FlipCard>();
 
-        
-        WaitTime = 2f;
     }
 
     private void Update()
     {
-        //print(FirstCard + " " + SecondCard);
-    }
 
-
-    //katotaan ett‰ jos ensimm‰inen kortti on k‰‰nnetty odotettaan 2 sekunttia toista korttia varten ja katotaan onko ne sama kortti ja jos ei k‰‰nnet‰‰n ne takaisin jos on samna niin j‰‰ oikein p‰in.
-    public void CheckForCombo()
-    {
-        //print("before loop");
-        while (FirstCardIsFlipped)
+        //onko eka kortti k‰‰nnetty
+        if (FirstCardIsFlipped)
         {
-            if (FirstCard == SecondCard)
+            //jos aika on isompi kuin 0
+            if(WaitTime > 0)
             {
-                print("found combo");
-            }
+                //onko klikatut kortit combo?
+                if(FirstCard == SecondCard)
+                {
+                    Combination_Found = true;
+                    NoCombination = false;
+                }
+                else
+                {
+                    NoCombination = true;
+                    
+                    if(CardsFlipped == 2)
+                    {
+                        
+                        WaitTime = 0f;
+                    } 
 
+                }
 
-            if (WaitTime > 0)
-            {
-                
                 WaitTime -= Time.deltaTime;
             }
             else
             {
-                
-                //WaitTime = 2f;
+                print("aika loppu");
+                FirstCard = string.Empty;
+                SecondCard = string.Empty;
+                WaitTime = 4f;
                 FirstCardIsFlipped = false;
-                
+                Combination_Found = false;
+                NoCombination = true;
             }
 
             
         }
-        
     }
+
+
+    //katotaan ett‰ jos ensimm‰inen kortti on k‰‰nnetty odotettaan 2 sekunttia toista korttia varten ja katotaan onko ne sama kortti ja jos ei k‰‰nnet‰‰n ne takaisin jos on samna niin j‰‰ oikein p‰in.
+    
 }
