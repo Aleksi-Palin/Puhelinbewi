@@ -29,6 +29,7 @@ public class FlipCard : MonoBehaviour
 
     private bool Scwc_Running;
 
+    
     private void Start()
     {
         
@@ -43,6 +44,8 @@ public class FlipCard : MonoBehaviour
 
     private void OnMouseDown()
     {
+        gm.flipcardScript = this;
+
         if (gm.CardsFlipped < 2 && !CardIsFlipped)
         {
             StartCoroutine("ShowCardWhenClicked");
@@ -107,16 +110,16 @@ public class FlipCard : MonoBehaviour
     //miinustetaan myös flipped card arvosta
     private void Update()
     {
-       if(!gm.Combination_Found && gm.CardsFlipped == 2 && !WacCR_Running)
-        {
-            StartCoroutine("WasntACombination");
-        } else if(gm.Combination_Found && gm.CardsFlipped == 2 && !Scwc_Running)
-        {
-            StopCoroutine("ShowCardWhenClicked");
+       //if(!gm.Combination_Found && gm.CardsFlipped == 2 && !WacCR_Running)
+       // {
+       //     StartCoroutine("WasntACombination");
+       // } else if(gm.Combination_Found && gm.CardsFlipped == 2 && !Scwc_Running)
+       // {
+       //     StopCoroutine("ShowCardWhenClicked");
            
 
             
 
-        }
+       // }
     }
 }
