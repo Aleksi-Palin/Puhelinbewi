@@ -25,9 +25,14 @@ public class FlipCard : MonoBehaviour
     [SerializeField] private bool CardIsFlipped;
     private bool CardIsFlippedCache;
 
-    private bool WacCR_Running;
+    private bool WasntC_CR_Running;
 
-    private bool Scwc_Running;
+    private bool FC_CR_Running;
+
+    private bool WasC_CR_Running;
+
+    private bool CardCountsubtracted;
+
 
     
     private void Start()
@@ -46,9 +51,9 @@ public class FlipCard : MonoBehaviour
     {
         gm.flipcardScript = this;
 
-        if (gm.CardsFlipped < 2 && !CardIsFlipped)
+        if (gm.CardsFlipped < 2 && !FC_CR_Running)
         {
-            StartCoroutine("ShowCardWhenClicked");
+            StartCoroutine("flipCard");
 
             //laitaan ekan klikatun kortin nimeksi kuvan nimi
             //ja jos eka kortti onjo klikattu laittaa se sen toisen klikatun stringiin
@@ -69,21 +74,67 @@ public class FlipCard : MonoBehaviour
 
 
     //näytä kortti halutun ajan ja lisää käännettyjen korttien määrään yksi kun kortti käännetään ja poista yksi kun se menee takaisin väärinpäin
+
+    //tee booleaneita jotka tarkistavat eri vaiheita, jotta ei tule bugeja jos käyttäjä tekee jotain nopeammin tai hitaammin halutusta nopeudesta.
     IEnumerator flipCard()
     {
-        yield return new WaitForSeconds(1);
+        FC_CR_Running = true;
+
+        gm.CardsFlipped++;
+
+        SR.sprite = CardImage;
+
+        yield return new WaitForSeconds(gm.WaitTime);
+
+        gm.CardsFlipped--;
+
+        CardCountsubtracted = true;
+
+        SR.sprite = CardsBackside_Image;
+
+        FC_CR_Running = false;
     }
 
     IEnumerator WasntCombination()
     {
+        WasntC_CR_Running = true;
+
         StopCoroutine("flipCard");
+        FC_CR_Running = false;
+        
         yield return new WaitForSeconds(1);
+
+        if (SR.sprite.name == CardImage.name)
+        {
+            SR.sprite = CardsBackside_Image;
+        }
+
+        if (!CardCountsubtracted)
+        {
+            gm.CardsFlipped--;
+        }
+
+        WasntC_CR_Running = false;
     }
 
     IEnumerator WasCombination()
     {
+        WasC_CR_Running = true;
+
         StopCoroutine("flipCard");
+
+        FC_CR_Running = false;
+
+        SR.sprite = CardImage;
+
+        if (!CardCountsubtracted)
+        {
+            gm.CardsFlipped--;
+        }
+
         yield return new WaitForSeconds(1);
+
+        WasC_CR_Running = false;
     }
 
     //katotaan jos yhdistelmä löydetti lopetetaan coroutine  
