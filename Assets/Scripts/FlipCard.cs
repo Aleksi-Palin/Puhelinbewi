@@ -69,57 +69,24 @@ public class FlipCard : MonoBehaviour
 
 
     //n‰yt‰ kortti halutun ajan ja lis‰‰ k‰‰nnettyjen korttien m‰‰r‰‰n yksi kun kortti k‰‰nnet‰‰n ja poista yksi kun se menee takaisin v‰‰rinp‰in
-    IEnumerator ShowCardWhenClicked()
+    IEnumerator flipCard()
     {
-        Scwc_Running = true;
-
-        CardIsFlippedCache = true;
-        SR.sprite = CardImage;
-        gm.CardsFlipped += 1;
-        CardIsFlipped = true;
-
-        
-        yield return new WaitForSeconds(Card_ShowTime);
-
-        CardIsFlipped = false;
-        SR.sprite = CardsBackside_Image;
-        gm.CardsFlipped -= 1;
-        CardIsFlippedCache = false;
-
-        Scwc_Running = false;
+        yield return new WaitForSeconds(1);
     }
 
-    public IEnumerator WasntACombination()
+    IEnumerator WasntCombination()
     {
-        WacCR_Running = true;
-        StopCoroutine("ShowCardWhenClicked");
-
-        
+        StopCoroutine("flipCard");
         yield return new WaitForSeconds(1);
-        if (CardIsFlipped && CardIsFlippedCache)
-        {
-            SR.sprite = CardsBackside_Image;
-            gm.CardsFlipped -= 1;
-            CardIsFlipped = false;
-        }
+    }
 
-        WacCR_Running = false;
+    IEnumerator WasCombination()
+    {
+        StopCoroutine("flipCard");
+        yield return new WaitForSeconds(1);
     }
 
     //katotaan jos yhdistelm‰ lˆydetti lopetetaan coroutine  
     //miinustetaan myˆs flipped card arvosta
-    private void Update()
-    {
-       //if(!gm.Combination_Found && gm.CardsFlipped == 2 && !WacCR_Running)
-       // {
-       //     StartCoroutine("WasntACombination");
-       // } else if(gm.Combination_Found && gm.CardsFlipped == 2 && !Scwc_Running)
-       // {
-       //     StopCoroutine("ShowCardWhenClicked");
-           
-
-            
-
-       // }
-    }
+   
 }

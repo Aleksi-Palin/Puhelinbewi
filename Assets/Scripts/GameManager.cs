@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
                     Combination_Found = true;
                     NoCombination = false;
 
-                    flipcardScript.StopCoroutine("ShowCardWhenClicked");
+                    //flipcardScript.StopCoroutine("ShowCardWhenClicked");
                 }
                 else
                 {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
                     
                     if(CardsFlipped == 2)
                     {
-                        flipcardScript.StartCoroutine("WasntACombination");
+                        //flipcardScript.StartCoroutine("WasntACombination");
                         WaitTime = 0f;
                     } 
 
