@@ -93,7 +93,7 @@ public class FlipCard : MonoBehaviour
         SR.sprite = CardsBackside_Image;
 
         FC_CR_Running = false;
-    }
+    }   
 
     IEnumerator WasntCombination()
     {
